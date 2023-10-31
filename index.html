@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ungrouped Median Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 15px 32px;
+            text-align: center;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #result {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        function calculateMedian() {
+            var inputData = document.getElementById("data").value;
+            var dataArray = inputData.split(",").map(Number);
+            dataArray.sort(function(a, b){return a - b});
+            var median;
+
+            if (dataArray.length % 2 === 0) {
+                var mid1 = dataArray[dataArray.length / 2 - 1];
+                var mid2 = dataArray[dataArray.length / 2];
+                median = (mid1 + mid2) / 2;
+            } else {
+                median = dataArray[Math.floor(dataArray.length / 2)];
+            }
+
+            document.getElementById("result").innerHTML = "Median: " + median;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Ungrouped Median Calculator</h1>
+        <label for="data">Enter comma-separated numbers:</label>
+        <input type="text" id="data">
+        <button onclick="calculateMedian()">Calculate Median</button>
+        <p id="result"></p>
+    </div>
+</body>
+</html>
